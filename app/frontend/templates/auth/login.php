@@ -15,7 +15,7 @@
       <input type="checkbox" name="remember" id="remember">Remember Me
     </label>
     </div>
-     <input type="hidden" name="csrf_token" value="<?php echo Token::generate(); ?>">
-     <input type="submit" value="Log In">
+      <input type="hidden" name="csrf_token" value="<?php echo Token::generate(); ?>">
+      <input type="submit" value="Log In">
   </form>
 </div>

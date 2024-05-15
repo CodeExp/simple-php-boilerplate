@@ -1,0 +1,25 @@
+<IfModule mod_rewrite.c>
+	RewriteEngine on
+
+	## http -> https
+	RewriteCond %{HTTP:X-Forwarded-Proto} !https
+	RewriteCond %{HTTPS} off
+	RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [NE,QSA]
+	
+	## Routage via index.php
+	RewriteBase /
+	RewriteRule ^index\.php$ - [L]
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteCond %{REQUEST_FILENAME} !-d
+	RewriteRule ^(.+)$ index.php [QSA,L,NC]
+</IfModule>
+
+  # ErrorDocument 404 /pays_sud_charente/error404.php
+  # DirectoryIndex accueil.php
+
+<IfModule mod_security.c>
+  SecFilterEngine Off
+  SecFilterScanPOST Off
+</IfModule>
+
+# Header add Content-Security-Policy "default-src 'none'; script-src 'self'; img-src 'self'; style-src 'self'; base-uri 'self'; form-action 'self'; frame-src 'none'; frame-ancestors 'none'"

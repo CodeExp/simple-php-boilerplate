@@ -1,1 +1,1 @@
-Oops, That Page Cannot be Found!
+<h1>Oups ! La page n'existe pas !</h1>

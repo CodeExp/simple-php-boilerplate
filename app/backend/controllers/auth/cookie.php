@@ -1,5 +1,4 @@
 <?php
-require_once 'app/backend/core/Init.php';
 
 if(Cookie::exists(Config::get('remember/cookie_name')) && !Session::exists(Config::get('session/session_name')))
 {

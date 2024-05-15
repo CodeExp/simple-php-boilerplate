@@ -5,7 +5,8 @@ class Validation
     private $_passed = false,
             $_optional = false,
             $_errors = array(),
-            $_db     = null;
+            $_db     = null,
+            $_user;
 
     public function __construct()
     {
@@ -25,7 +26,7 @@ class Validation
 
                 if ($rule === 'optional' && ! empty($value))
                 {
-                   $this->_optional = true;
+                    $this->_optional = true;
                 }
 
                 if ($rule === 'required' && empty($value))

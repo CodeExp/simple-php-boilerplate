@@ -1,174 +1,172 @@
 # Simple PHP Boilerplate
-- This project only exists for helping my colleagues in school.
 
- ## Table of Contents
+https://github.com/CodeExp/simple-php-boilerplate
 
-- [Concepts](#concepts-)
-    - [Files Controller](#files-controller)
-    - [Seperation of Ideas](#seperation-of-ideas)
-    - [Level of Useability](#level-of-useability)
-    - [Organize the Files](#organize-the-files)
-- [Advantages](#advantages-)
-- [Knowledge Requirements](#knowledge-requirements-)
-- [Features](#features-)
-- [Getting Started](#getting-started)
-- [Overview](#overview)
-    - [Nice Configurations](#nice-configurations)
-    - [Easy Validation](#easy-validation)
-    - [CSRF Protection](#csrf-protection)
-    - [Secure Password](#secure-password)
-    - [Sql Injection Protection](#sql-injection-protection)
-- [Core Classes](#core-classes-)
-    - [Cookie Class](#cookie-class)
-    - [Database Class](#database-class)
-    - [Hash Class](#hash-class)
-    - [Helper Functions](#helper-functions)
-    - [Input Class](#input-class)
-    - [Password Class](#password-class)
-    - [Redirect Class](#redirect-class)
-    - [Session Class](#session-class)
-- [Helpful Classes](#helpful-classes-)
-    - [Token Class](#token-class)
-    - [User Class](#user-class)
-    - [Validation Class](#validation-class)
+## Sommaire
+- [Concepts](#concepts)
+    - [Séparation des idées](#seperation-des-idees)
+        - [Backend](#backend)
+        - [Frontend](#frontend)
+- [Avantages](#avantages)
+- [Exigences en matière de connaissances](#exigences-en-matiere-de-connaissances)
+- [Vue d'ensemble](#vue-d-ensemble)
+    - [Configuration centralisée](#configuration-centralisee)
+    - [Gestion des routes](#gestion-des-routes)
+    - [Validation facile](#validation-facile)
+    - [Protection CSRF](#protection-csrf)
+    - [Mot de passe sécurisé](#mot-de-passe-securise)
+    - [Protection contre les injections Sql](#protection-contre-les-injections-sql)
+- [Classes de base (Core)](#classes-de-base--core-)
+    - [Classe Config](#classe-config)
+    - [Classe Cookie](#classe-cookie)
+    - [Database Classe](#classe-database)
+    - [Classe Hash](#classe-hash)
+    - [Fonctions Helper](#fonctions-helper)
+    - [Fichier Init.php pour l'Initialisation](#fichier-init-php-pour-l-Initialisation)
+    - [Classe Input](#classe-input)
+    - [Classe Password](#class-password)
+    - [Classe Redirect](#class-redirect)
+    - [Classe Session](#classe-session)
+- [Classes Utilies](#classes-utiles)
+    - [Classe Token](#classe-token)
+    - [Classe Validation](#classe-validation)
+    - [Classe Contact](#classe-contact)
+- [Classes de Modèles](#classes-de-modeles)
+    - [Classe User](#classe-user)
+    - [Autres classes de modèles](#autres-classes-de-modeles)
+    - [Diagramme de Classes de Modèles](#diagramme-de-classes-de-modeles)
+### Concepts
+Le dossier de l'application `app` est composé de dossiers frontend et backend, qui séparent la conception frontend (les vues) et la logique backend (les contrôleurs et les classes de modèles).
+Le dossier `medias` contient les images et documents utilisés dans l'application.
+Les différentes pages sont définies dans `app/init/routes.php`. C'est dans ce fichier que l'ont défini les urls de l'application ainsi que les contrôleurs et les contenus visuels qui seront appelés pour contruire la page.
+#### Séparation des idées
+Le dossier "app" contient quatres dossiers :
+- `frontend` : la logique de l'application, c'est-à-dire le coeur, les fichiers d'initialisation, les contrôleurs et les classes de modèles.
+- `backend` : les vues de l'application, c'est à dire les fichiers qui contiennent le code HTML ainsi que les fichiers css et js.
+- `setup` : les fichiers pour l'installation de l'application (notamment une sauvegarde de la base de données avec sa structure et les données pour l'année 2023).
+- `vendor` : ce sont les librairies externes utilisées par l'application.
+##### Backend
+Le dossier backend contient les dossiers `controllers`, `init`, `classes`, `core`. Les dossiers `controllers` et `init` sont de niveau 2, Classes est de niveau 1, et Core est de niveau 0. C'est donc dans le dossier controllers que vous placerez votre logique qui se connecte à vos pages frontales. Ensuite, les dossiers `classes` sont les objets ou les outils qui sous-tendent la logique des fichiers de controllers. Enfin, le dossier `core` représente les idées abstraites qui se cachent derrière le dossier des classes. Et c'est tout.
+##### Frontend
+Le dossier `frontend` contient les dossiers `assets`, `includes`, `templates` et `pages` qui ont été découpés pour réutiliser votre design et vos codes. Comme le dossier assets où se trouvent les css, js, images, le dossier includes où sont séparés les headers, navbar, messages, footer et le dossier pages où se trouvent toutes les pages de l'application.
 
-### Concepts :
-When you use this app the first things you'll notice are the files and folder in the directory. The app folder composed of frontend and backend folders, which separates the front design and backend logic. The files that you saw in the outside of the app folder, I think as the controllers, think this as you play a jigsaw puzzle, you need to connect the different pieces to solve it or form it. So.. as you see the content of the files, there is no logic or designs include on it, except the require once function that use to insert or connect the files. Those require name defined in the 'start.php', to make it easier to memorize, act as an alias or be constant for the file locations.
-
-To understand the structure and idea of this app, think in this way;
-
-##### Files Controller
-The files that outside in the app folders are puzzles that you need to solve. Then the files inside in the app folder are the pieces of a puzzle that you need to require or connect.
-
-##### Separation of Ideas
-The app folder contains two folders that are frontend and backend folder. Think of it as the separation of logic and design in your application.
-
-##### Level of Usability
-The backend folder contains auth, classes, core folders. The lower the level, the low chance that you will use in your logic. Auth is level 2, Classes is level 1, and Core is level 0. So in Auth folder, where you will put your logic that connects from your frontend pages. Then the classes folders are your objects or tools that logic behind in Auth files. Then the Core folder is the abstract ideas behind your classes folder. And that's it.
-
-##### Organize the Files
-The Frontend folder contains assets, includes, and pages folders which were chopped to reuse your design and codes. Like assets folder where the css, js, images lived, includes folder where the headers, navbar, messages, footer are separated and the pages folder where you all your application pages lived.
-
-
-
-### Advantages :
-
-- Organize File Structure
-- High Security
-- Code Reuseable
-
-### Knowledge Requirements :
-
-- [PHP Programming Basics](https://www.youtube.com/watch?v=XKWqdp17BFo&list=PLfdtiltiRHWHjTPiFDRdTOPtSyYfz3iLW)
-- [Good Understanding in OOP](https://www.youtube.com/watch?v=ipp4WPDwwvk&list=PLfdtiltiRHWF0RicJb20da8nECQ1jFvla) (optional)
-- Open Minded
-
-### Features :
-
-- Nice Configurations
-- Easy Validation
-- CSRF Protection
-- Secure Password
-- Sql Injection Protection
-- A lot of helpful classes.
-
-### Getting Started
-
-#### [Download ZIP](https://github.com/jandaryl/simple-php-boilerplate/archive/master.zip) or Git Clone
+Le dossier template, quant à lui, inclus les vues spécifiques des pages (de l'entité Page) avec un design spécifique.
+### Avantages
+- Organiser la structure des fichiers
+- Haute sécurité
+- Code Réutilisable
+### Exigences en matière de connaissances
+- [Les bases de la programmation en PHP](https://www.youtube.com/watch?v=XKWqdp17BFo&list=PLfdtiltiRHWHjTPiFDRdTOPtSyYfz3iLW)
+- [Bonne compréhension de la POO](https://www.youtube.com/watch?v=ipp4WPDwwvk&list=PLfdtiltiRHWF0RicJb20da8nECQ1jFvla) (optional)
+### Vue d'ensemble
+#### Configuration centralisée
 ```php
-git clone https://github.com/jandaryl/simple-php-boilerplate.git
-```
-
-### Setup environment
-
-Follow the steps below:
-
-1. [Download and install Xampp](https://www.apachefriends.org/download.html), which is used to manage the system.
-2. Move the files to the htdocs folder of Xampp.
-3. Import the database and set the configuration. 
-
-### Overview
-
-#### Nice Configurations
-
-``` php
 <?php
-// app/backend/auth/config.php
+// app/backend/init/config.php
 
 $GLOBALS['config'] = array(
-    'app' => array(
-        'name'          => 'AppName',
-    ),
-    'mysql' => array(
-        'host'          => '127.0.0.1',
-        'username'      => 'root',
-        'password'      => '',
-        'db_name'        => 'php_boilerplate'
-    ),
-    ...
+    'app' => array(
+        'name'          => 'AppName',
+    ),
+    'mysql' => array(
+        'host'          => '127.0.0.1',
+        'username'      => 'root',
+        'password'      => '',
+        'db_name'       => 'php_boilerplate'
+    ),
+...
+)
 
 <?php
 // app/backend/core/Database.php
-require_once 'app/backend/auth/config.php';
+require_once 'app/backend/init/config.php';
 ...
 $pdo = new PDO('mysql:host='.Config::get('mysql/host').';'. // 127.0.0.1
-        'dbname='.Config::get('mysql/db_name'),             // php_boilerplate
-                  Config::get('mysql/username'),            // root
-                  Config::get('mysql/password')             // ''
-    );
+        'dbname='.Config::get('mysql/db_name'),             // php_boilerplate
+                  Config::get('mysql/username'),            // root
+                  Config::get('mysql/password')             // ''
+    );
 ```
-
-#### Easy Validation
-
+#### Gestion des routes
+```php
+// app/backend/init/routes.php
+<?php
+$router = new Router();
+$router->addRoute('/accueil.php', function() use ($indexation, $user) {
+    Redirect::to('/');
+});
+...
+$router->addRoute('/', function () use ($indexation, $user) {
+    require_once BACKEND_CONTROLLER  . 'accueil.php';
+    require_once FRONTEND_INCLUDE . 'header.php';
+    require_once FRONTEND_INCLUDE . 'admin-navbar.php';
+    require_once FRONTEND_INCLUDE . 'navbar.php';
+    require_once FRONTEND_INCLUDE . 'messages.php';
+    require_once FRONTEND_PAGE . 'accueil.php';
+    require_once FRONTEND_INCLUDE . 'newsletter.php';
+    require_once FRONTEND_INCLUDE . 'map.php';
+    require_once FRONTEND_INCLUDE . 'partenaires.php';
+    require_once FRONTEND_INCLUDE . 'footer.php';
+});
+...
+$router->setDefaultHandler(function ($indexation, $user) {
+    require_once BACKEND_CONTROLLER  . 'page/afficher.php';
+    require_once FRONTEND_INCLUDE . 'header.php';
+    require_once FRONTEND_INCLUDE . 'admin-navbar.php';
+    require_once FRONTEND_INCLUDE . 'navbar.php';
+    require_once FRONTEND_PAGE . 'page/afficher.php';
+    require_once FRONTEND_INCLUDE . 'partenaires.php';
+    require_once FRONTEND_INCLUDE . 'footer.php';
+});
+```
+#### Validation facile
 ```php
 <?php
-// app/backend/auth/update-account.php
+// app/backend/controllers/update-account.php
 require_once 'app/backend/classes/Validation.php';
-
 $validate = new Validation();
 
 $validation = $validate->check($_POST, array(
-        'username'  => array(
-            'required'  => true,
-            'min'       => 2,
-            'unique'    => 'users'
-        ),
-        'current_password'  => array(
-            'required'  => true,
-            'min'       => 6,
-            'verify'    => 'password'
-        ),
-        'new_password'  => array(
-            'optional'  => true,
-            'min'       => 6,
-            'bind'      => 'confirm_new_password'
-        )
-        'confirm_new_password' => array(
-            'optional'  => true,
-            'min'       => 6,
-            'match'     => 'new_password',
-            'bind'      => 'new_password',
-            ),
-        ));
+        'username'  => array(
+            'required'  => true,
+            'min'       => 2,
+            'unique'    => 'users'
+        ),
+        'current_password'  => array(
+            'required'  => true,
+            'min'       => 6,
+            'verify'    => 'password'
+        ),
+        'new_password'  => array(
+            'optional'  => true,
+            'min'       => 6,
+            'bind'      => 'confirm_new_password'
+        )
+        'confirm_new_password' => array(
+            'optional'  => true,
+            'min'       => 6,
+            'match'     => 'new_password',
+            'bind'      => 'new_password',
+            ),
+        ));
 
-if ($validate->passed() {
-    // Awesome Logic...
+if ($validate->passed()) {
+    // Awesome Logic...
 } else {
-    echo $validate->$error(); // First error message.
+    echo $validate->$error(); // First error message.
 
-    foreach ($validate->errors() as $error) // All error messages.
-    {
-        echo $error;
-    }
+	foreach ($validate->errors() as $error) // All error messages.
+    {
+        echo $error;
+    }
 }
 ...
 ```
-
-### CSRF Protection
-
+#### Protection CSRF
 ```php
 <?php
 // 'app/frontend/pages/update-account.php';
+
 require_once 'app/backend/classes/Token.php';
 
 ...
@@ -177,51 +175,40 @@ require_once 'app/backend/classes/Token.php';
 ...
 
 <?php
-// 'app/backend/auth/update-account.php';
+// 'app/backend/controllers/update-account.php';
 require_once 'app/backend/core/Input.php';
 require_once 'app/backend/classes/Token.php';
 ...
-if (Token::check(Input::get('csrf_token')) {
-    // Do validation stuff...
+if (Token::check(Input::get('csrf_token'))) {
+    // Do validation stuff...
 }
 ...
 ```
-
-### Secure Password
-
+#### Mot de passe sécurisé
 ```php
 <?php
-// app/backend/auth/config.php
-...
-'password' => array(
-        'algo_name' => PASSWORD_DEFAULT,
-        'cost'      => 10,
-        'salt'      => 50,
-),
-...
+// app/backend/controllers/register.php
 
-<?php
-// app/backend/auth/register.php
 require_once app/backend/core/Password.php
 ...
 $user->create(array(
-     ...
-    'password'  => Password::hash(Input::get('password')),
-     ...
-    ));
+     ...
+    'password'  => Password::hash(Input::get('password')),
+     ...
+    ));
 ...
 
 <?php
-// app/backend/auth/register.php
+// app/backend/controllers/register.php
 require_once app/backend/classes/Validation.php
 ...
+
 if (Password::check($value, $this->_user->data()->password)) {
-    // Do awesome stuff...
+    // Do awesome stuff...
 }
 ...
 ```
-
-### Sql Injection Protection
+#### Protection contre les injections Sql
 ```php
 <?php
 // app/backend/core/Database.php
@@ -230,292 +217,310 @@ $this->_pdo = new PDO('mysql:host='.Config::get('mysql/host')...);
 ...
 $this->_query->bindvalue($x, $param);
 ...
-$this->_results     = $this->_query->fetchAll(PDO::FETCH_OBJ);
+$this->_results = $this->_query->fetchAll(PDO::FETCH_OBJ);
 ...
-
 ```
-
-### Core Classes :
-
-#### Cookie Class
+### Classes de base (Core)
+#### Classe Config
+Classe pour obtenir les informations du fichier de configuration
+```php
+    $tokenName = Config::get('session/token_name');
+```
+#### Classe Cookie
 ```php
 <?php
 require_once 'app/backend/core/Cookie.php';
-// check if cookie name is exists
+// vérifier si le nom du cookie existe
 if (Cookie::exists(Config::get('remember/cookie_name'))) {
-    // ...
+    // ...
 }
 
-// get the cookie value
+// obtenir la valeur du cookie
 $cookie_value = Cookie::get(Config::get('remember/cookie_name'));
 
-// delete the cookie value
+// supprimer la valeur du cookie
 $cookie_value = Cookie::delete(Config::get('remember/cookie_name'));
-
 ```
-
-#### Database Class
+#### Classe Database
 ```php
 <?php
 require_once 'app/backend/core/Database.php';
 
-// Make Connection
+// Établir une connexion
 $database = Database::getInstance();
 
-// Get the data from database.
+// Obtenir les données de la base de données.
 // $database->get($table, $where = array())
-$database->get('users', array('id', '=', '13');
+$database->get('users', array('id', '=', '13'));
 
-// Insert the data to database.
+// Insérer les données dans la base de données.
 // $database->insert($table, $fields = array())
 $database->insert('users', array(
-                  'username'  => 'johnny123',
-                  'password'  => Password::hash('secret'),
-                  'name'      => 'JohnDoe',
-                  'joined'    => date('Y-m-d H:i:s')
-               ));
+                  'username'  => 'johnny123',
+                  'password'  => Password::hash('secret'),
+                  'name'      => 'JohnDoe',
+                  'joined'    => date('Y-m-d H:i:s')
+               ));
 
-// Update the data from database.
+// Mettre à jour les données de la base de données.
 // $database->update($table, $id, $fields = array())
 $database->update('users', '13', array(
-                  'username'  => 'newusernname',
-                  'password'  => Password::hash('newsecret'),
-                  'name'      => 'newname',
-               ));
+                  'username'  => 'newusernname',
+                  'password'  => Password::hash('newsecret'),
+                  'name'      => 'newname',
+               ));
 
-// Delete the data from database.
+// Supprimer les données de la base de données.
 // $database->delete($table, $where = array())
-$database->delete('users', array('id', '=', '13');
+$database->delete('users', array('id', '=', '13'));
 
-// Get the first data from database.
+// Obtenir les premières données de la base de données.
 $database->first();
 
-// Count the data from database.
+// Compter les données de la base de données.
 $database->count();
 
-// Return a results of object data from database.
+// Renvoie un résultat des données de l'objet à partir de la base de données.
 $database->results();
 
-// Get error from query.
+// Obtenir l'erreur de la requête.
 $database->error();
-
 ```
-#### Hash Class
+#### Classe Hash
 ```php
 <?php
 require_once 'app/backend/core/Hash.php';
 
-// Make a hash base on the algorithm in config.
+// Effectuer un hachage sur la base de l'algorithme indiqué dans la configuration.
 $hash = Hash::make('string');
 
-// Generate a unique hash.
+// Générer un hachage unique.
 $hash = Hash::unique();
-
 ```
-
-#### Helper Functions
+#### Fonctions Helpers
 ```php
 <?php
 require_once 'app/backend/core/Helpers.php';
+...
 
-escape('string');       // convert the html entities to quotes.
-autoload($classname);   // use to auto register all classes.
-cleaner('string');      // remove the /_/ then make upper the string.
-
+escape('string');       // convertir les entités html en guillemets.
+escape_decode('string');// fonction inverse de escape()
+autoload($classname);   // pour inscrire automatiquement toutes les classes.
+cleaner('string');      // supprimer le /_/ puis rendre supérieure la chaîne.
+appName();              // Affichage du nom de l'application
+debug('string', 'int'); // fonction debug qui a été codé par Catherine
+norobotmail('int');     // fonction
+replacemail('string');; // fonction pour afficher les adresses emails de manière sécurisée
+test_input('string');   // fonction jerem pour contrôle de l'input mail
+slugify('string');      // fonction pour créer automatiquement les slugs ou noms utilisés dans l'url
 ```
-#### Input Class
+#### Fichier Init.php pour l'Initialisation
+Fichier principal où la session est initialisée et les fichiers sont chargés
+```php
+<?php
+session_start();
+require_once 'app/backend/init/config.php';
+require_once 'app/backend/core/Helpers.php';
+
+spl_autoload_register("autoload");
+
+require_once 'app/backend/init/cookie.php';
+require_once 'app/backend/init/user.php';
+```
+#### Classe Input
+Classe pour récupérer les valeurs obtenues en $_GET ou en $_POST
 ```php
 <?php
 require_once 'app/backend/core/Input.php';
 
-// Check the request if empty such as post or get.
+// Vérifier si la requête est vide, par exemple post ou get.
 if (Input::exists()) {
-    // Do some validation..
+    // Do some validation..
 }
 
-// Get the value from that request.
+// Obtenir la valeur de cette demande.
 Input::get('csrf_token');
-
 ```
-#### Password Class
+#### Classe Password
 ```php
 <?php
 require_once 'app/backend/core/Password.php';
 
-// Generate a hash based on the configs.
+// Générer un hachage basé sur les configurations.
 $hash_password = Password::hash('secret');
 
-// Check the hash if it needed to rehash.
-// This will occur if you changed the password config.
+// Vérifier le hash s'il a besoin d'être rehashé
+// Cela se produira si vous avez changé la configuration du mot de passe.
 if (Password::rehash('hash')) {
-    // Hash the password..
+    // Hash the password..
 }
 
-// Verify the password from database stored hash.
+// Vérifier le mot de passe à partir du hachage stocké dans la base de données.
 if (Password::check('secret', 'hash')) {
-    // Do awesome stuff...
+    // Do awesome stuff...
 }
 
-// Get the hash information. E.g. algo_name, cost, or salt.
+// Obtenir les informations sur le hachage. Par exemple, le nom de l'algo, le coût ou le sel.
 $password_info = Password::getInfo('hash');
-
 ```
-
-#### Redirect Class
+#### Classe Redirect
 ```php
 <?php
 require_once 'app/backend/core/Redirect.php';
 
-// Redirect the user from location that specify.
-Redirect::to('index.php');
-
+// Rediriger l'utilisateur à partir de l'emplacement spécifié.
+Redirect::to('/');
 ```
-#### Session Class
+#### Classe Session
 ```php
 <?php
-require_once 'app/backend/auth/config.php';
+require_once 'app/backend/init/config.php';
 require_once 'app/backend/core/Session.php';
 
-// Check the session name if exists in the server.
+// Vérifier le nom de la session s'il existe dans le serveur.
 if (Session::exists(Config::get('session/session_name'))) {
-    // Do awesome stuff...
+    // Do awesome stuff...
 }
 
-// Get the session name value.
+// Obtenir la valeur du nom de la session.
 $session_value = Session::get(Config::get('session/session_name'));
 
-// Delete the session name value.
+// Supprimer la valeur du nom de la session.
 Session::delete(Config::get('session/session_name'));
 
-// Set a flash message to display to the user.
-// Use this if want to message the user by their operation.
+// Définir un message flash à afficher à l'utilisateur
+// Utiliser ceci si l'on veut envoyer un message à l'utilisateur en fonction de son opération
 // flash($message-name, $message)
 Session::flash('register-success', 'Thanks for registering! You can login now.');
-
 ```
-
-### Helpful Classes :
-#### Token Class
+### Classes Utiles
+#### Classe Token
 ```php
 <?php
 require_once 'app/backend/classes/Token.php';
 
-// Generate token for csrf protection.
+// Générer un jeton pour la protection csrf.
 $csrf_token = Token::generate();
 
-// Check token if equal to the user token.
+// Vérifier si le jeton est égal au jeton de l'utilisateur.
 if (Token::check($token)) {
-    // Do more validation...
+    // Faire plus de validation...
 }
-
 ```
-#### User Class
-```php
-<?php
-require_once 'app/backend/classes/User.php'
-
-// Make an instance for user.
-$user = new User();
-
-// Note : Don't let this fool you..
-//        The logic was the same in database query.
-//        It just encapsulated by User Class.
-
-// Create a user data.
-$user->create(array(
-            'username'  => Input::get('username'),
-            'password'  => Password::hash(Input::get('password')),
-            'name'      => Input::get('name'),
-            'joined'    => date('Y-m-d H:i:s'),
-        ));
-
-// Update the user data.
-$user->update(array(
-            'username'  => Input::get('username'),
-            'password'  => Password::hash(Input::get('password')),
-            'name'      => Input::get('name'),
-            'joined'    => date('Y-m-d H:i:s'),
-        ), '13');
-
-// Find the user if exists.
-$user->find('13');          // return true or false
-$user->find('johnny123');   // return true or false
-
-// Login the user.
-// The 3rd argument is to check if the user want to remember.
-$user->login('johnny123', 'secret', true);
-
-// Check the user if exists.
-$user->exists();
-
-// Logout the user.
-// Delete the session and cookie that attached.
-$user->logout();
-
-
-// Get the user data in object way.
-$user->data();
-$user->data()->username;    // 'johnny123'
-$user->data()->name;        // 'JohnDoe'
-
-// Check if the user logged in.
-$user->isLoggedIn();        // Return true or false.
-
-// Delete the data from database.
-$user->deleteMe();
-
-```
-#### Validation Class
+#### Classe Validation
 ```php
 <?php
 require_once 'app/backend/classes/Validation.php'
 
-// Make an new instance of Validation.
-$validate   = new Validation();
+// Créez une nouvelle instance de Validation.
+$validate   = new Validation();
 
-//  Available Rules :                               Notes :
-//          optional => true,               'can be null or no value'
-//          required => true,               'cannot be null or no value'
-//          bind     => 'input_name',       'make connect to other input'
-//          min      => 'any_number',       'minimum length of that input'
-//          max      => 'any_number',       'maximum length of that input'
-//          match    => 'input_name',       'check if match input from another'
-//          email    => true,               'check the input if valid email'
-//          alnum    => true,               'check if the input alpha numeric'
-//          unique   => 'table_name',       'check if the input unique from table'
-//          verify   => 'password',         'only in password, check the current'
+//  Règles disponibles :                               Notes :
+//          optional => true,               'peut être nul ou sans valeur'
+//          required => true,               'ne peut être nul ou sans valeur'
+//          bind     => 'input_name',       'établir une connexion avec d'autres entrées'
+//          min      => 'any_number',       'la longueur minimale de cette entrée'
+//          max      => 'any_number',       'la longueur maximale de cette entrée'
+//          match    => 'input_name',       'vérifier si l'entrée correspond à celle d'un autre'
+//          email    => true,               'Vérifier si l'adresse électronique saisie est valide'
+//          alnum    => true,               'vérifier si l'entrée est alpha numérique'
+//          unique   => 'table_name',       'vérifier si l'entrée est unique dans la table indiquée'
+//          verify   => 'password',         'uniquement en mot de passe, vérifiez l'état actuel de la'
 
 $validation = $validate->check($_POST, array(
-                'username'  => array(
-                    'required'  => true,
-                    'unique' => 'users',
-                    'min' => 2,
-                    'max' => 20,
-                    'matches' => 'password',
-                    alnum    => true
-                ),
-            ));
+                'username'  => array(
+                    'required'  => true,
+                    'unique' => 'users',
+                    'min' => 2,
+                    'max' => 20,
+                    'matches' => 'password',
+                    'alnum'    => true
+                ),
+            ));
 
-// Check if there is an errors.
-if ($validate->passed() {
-    // Query to the database...
+// Vérifier s'il y a des erreurs.
+if ($validate->passed()) {
+    // Requête à la base de données...
 } else {
-    // For first error message.
-    // echo $validate->$error();
+    // Pour le premier message d'erreur.
+    // echo $validate->$error();
 
-    // For all error messages.
-    foreach ($validate->errors() as $error)
-    {
-        echo $error;
-    }
+    // Pour tous les messages d'erreur.
+    foreach ($validate->errors() as $error)
+    {
+        echo $error;
+    }
 }
-
 ```
+#### Classe Contact
+Classe utilisée pour l'envoi de mails à partir du formulaire de contact.
+### Classes de Modèles
+Ensemble des classes spécifiques aux fonctionnalités de l'application
+#### Classe User
+Tables associées : users, users_session et groups.
+```php
+<?php
+require_once 'app/backend/classes/User.php'
 
-Thanks for reading! I hope this is useful...
+// Créer une instance pour l'utilisateur.
+$user = new User();
 
-### License
+// Note : Ne vous laissez pas abuser...
+// La logique est la même dans la requête de la base de données.
+// Il est simplement encapsulé dans la classe d'utilisateur.
 
-Simple PHP Boilerplate is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+// Créer une donnée utilisateur.
+$user->create(array(
+            'username'  => Input::get('username'),
+            'password'  => Password::hash(Input::get('password')),
+            'name'      => Input::get('name'),
+            'joined'    => date('Y-m-d H:i:s'),
+        ));
+
+// Mettre à jour les données de l'utilisateur.
+$user->update(array(
+            'username'  => Input::get('username'),
+            'password'  => Password::hash(Input::get('password')),
+            'name'      => Input::get('name'),
+            'joined'    => date('Y-m-d H:i:s'),
+        ), '13');  
+
+// Trouver l'utilisateur s'il existe.
+$user->delete('13');        // supprime l'utilisateur
+
+// Trouver l'utilisateur s'il existe.
+$user->find('13');          // renvoie vrai ou faux
+$user->find('johnny123');   // renvoie vrai ou faux  
+
+// Lister les utilisateurs
+$user->findAllEmails()  //renvoie l'ensemble des adresse emails
+$user->findAll()        //renvoie l'ensemble des utilisateurs
+
+// Connexion de l'utilisateur.
+// Le troisième argument permet de vérifier si l'utilisateur souhaite se souvenir.
+$user->login('johnny123', 'secret', true);
+
+// Vérifier si l'utilisateur existe.
+$user->exists();
+
+// Déconnexion de l'utilisateur.
+// Supprimer la session et le cookie qui y sont attachés.
+$user->logout();
+
+// Obtenir les données de l'utilisateur sous forme d'objet.
+$user->data();
+$user->data()->username;    // 'johnny123'
+$user->data()->name;        // 'JohnDoe'
+
+// Vérifier si l'utilisateur s'est connecté.
+$user->isLoggedIn();        // Renvoyer vrai ou faux.
+
+// Supprimer les données de la base de données.
+$user->deleteMe();
+```
+#### Autres classes de modèles
+- ...
+- SiteInfo (site_info)
+#### Diagramme de Classes de Modèles
 
 

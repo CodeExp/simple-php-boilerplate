@@ -13,12 +13,6 @@ $GLOBALS['config'] = array(
         'db_name'        => 'php_boilerplate'
     ),
 
-    'password' => array(
-        'algo_name' => PASSWORD_DEFAULT,
-        'cost'      => 10,
-        'salt'      => 50,
-    ),
-
     'hash' => array(
         'algo_name' => 'sha512',
         'salt'      => 30,
