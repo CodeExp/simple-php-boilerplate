@@ -14,7 +14,7 @@ define('FRONTEND_ASSET', 'app/frontend/assets/');
 $indexation = ""; // De base les pages sont indexées par les moteurs de recherche. cf la fonction nestpasadmin
 
 require_once 'app/backend/core/Router.php';
-require_once 'app/backend/config/routes.php';
+require_once 'app/backend/init/routes.php';
 
 $router->addGlobalVariable('indexation', $indexation);
 $router->addGlobalVariable('user', $user);
