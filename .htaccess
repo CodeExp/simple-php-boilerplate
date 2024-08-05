@@ -14,7 +14,7 @@
 	RewriteRule ^(.+)$ index.php [QSA,L,NC]
 </IfModule>
 
-  # ErrorDocument 404 /pays_sud_charente/error404.php
+  # ErrorDocument 404 /app/frontend/includes/errors/404.php
   # DirectoryIndex accueil.php
 
 <IfModule mod_security.c>
